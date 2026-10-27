@@ -18,3 +18,24 @@ python main.py --epochs 1 --device cpu
 ```
 
 Outputs (including the best checkpoint) are written to `outputs/`.
+
+## Results
+
+Audit run on a 89 / 19 / 20 image split of COCO128: test precision **0.60**, recall **0.54**, mAP50 **0.620**, mAP50-95 **0.484** (20 test images). COCO128 is drawn from the COCO training set that the pretrained YOLO weights were trained on, so these scores are optimistic and not a measure of generalisation.
+
+## Repository contents
+
+| File | Purpose |
+|---|---|
+| `.gitignore` | Keeps data, weights and outputs out of Git |
+| `LICENSE` | MIT licence for the code |
+| `main.py` | Training and evaluation script |
+| `requirements.txt` | Python dependencies |
+
+## License
+
+Code is released under the MIT License (see `LICENSE`). Datasets keep their own licences and are downloaded at run time, not redistributed here.
+
+## Related
+
+Part of a set of compact, reproducible ML/DL baselines by [000MAK](https://github.com/000MAK). Flagship research project: [QMASE martial-arts analytics engine](https://github.com/000MAK/quantix-martial-arts-engine).
