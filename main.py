@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import shutil
 import os
 import urllib.request
@@ -145,6 +146,12 @@ def main() -> None:
     evaluation = model.val(data=str(data_yaml), split="test", device=args.device, workers=0)
     print(f"Image split counts: {counts}")
     print("Held-out test metrics:", evaluation.results_dict)
+    test_metrics = {key: float(value) for key, value in evaluation.results_dict.items()}
+    args.output_dir.mkdir(parents=True, exist_ok=True)
+    (args.output_dir / "test_metrics.json").write_text(
+        json.dumps({"split": "test", "image_counts": counts, "metrics": test_metrics}, indent=2),
+        encoding="utf-8",
+    )
 
 
 if __name__ == "__main__":
